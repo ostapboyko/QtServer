@@ -1,8 +1,8 @@
-import { WebSocket } from "ws";
-import "http"
+import { WebSocketServer } from "ws";
+import * as http from "http";
 
 const server = http.createServer();
-const wss = new WebSocket.Server({ server });
+const wss = new WebSocketServer({ server });
 
 wss.on("connection", ws => {
     console.log("Client connected");
