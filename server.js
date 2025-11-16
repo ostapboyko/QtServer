@@ -1,14 +1,9 @@
-import { WebSocketServer } from "ws";
+const server = http.createServer();
+const wss = new WebSocket.Server({ server });
 
-const PORT = 3000;
-const wss = new WebSocketServer({ port: PORT });
-
-wss.on("connection", (ws) => {
-    console.log("Client connected.");
-    ws.on("message", (msg) => {
-        ws.send("ECHO: " + msg);
-    });
-    ws.on("close", () => {
-        console.log("Client disconnected.");
-    })
+wss.on("connection", ws => {
+    console.log("Client connected");
+    ws.send("Hello from server");
 });
+
+server.listen(process.env.PORT || 3000);
